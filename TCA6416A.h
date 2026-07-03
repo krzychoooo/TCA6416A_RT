@@ -51,7 +51,7 @@ public:
 
   //       DEBUG
   int      getLastError();
-
+  void pin_write(uint8_t pinNum, uint8_t level);
 
 private:
   uint8_t  _address = 0;
