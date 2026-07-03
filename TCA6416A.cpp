@@ -164,6 +164,17 @@ uint8_t TCA6416A::digitalRead1(uint8_t pin)
   return (data & (1<< pin)) > 0;
 }
 
+void TCA6416A::pin_write(uint8_t pinNum, uint8_t level) {
+	uint16_t mask = 1 << pinNum;
+
+	if (level == HIGH) {
+		pinState |= mask;
+	} else {
+		pinState &= ~mask;
+	}
+
+	digitalWrite16(pinState);
+}
 
 /////////////////////////////////////////////
 //
