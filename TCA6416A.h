@@ -27,6 +27,7 @@ public:
   TCA6416A(uint8_t address = 0x20, TwoWire *wire = &Wire);
 
   bool     begin();
+  bool     begin(uint8_t addr_pin, TwoWire *theWire = &Wire);
   bool     isConnected();
   uint8_t  getAddress();
 
@@ -51,7 +52,7 @@ public:
 
   //       DEBUG
   int      getLastError();
-  void pin_write(uint8_t pinNum, uint8_t level);
+  void      pin_write(uint8_t pinNum, uint8_t level);
 
 private:
   uint8_t  _address = 0;
@@ -63,6 +64,7 @@ private:
 
   int      writeRegister(uint8_t reg, uint16_t value);
   uint16_t readRegister(uint8_t reg);
+  uint16_t pinState;
 };
 
 

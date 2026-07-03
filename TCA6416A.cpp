@@ -36,6 +36,25 @@ bool TCA6416A::begin()
   return true;
 }
 
+bool TCA6416A::begin(uint8_t addr_bit, TwoWire *theWire) {
+	_address = 0x20 | addr_bit;
+	_wire = theWire;
+	_wire->begin();
+
+	/// Check if device is connected
+	_wire->beginTransmission((int)_address);
+	if (_wire->endTransmission() != 0) {
+		return false;
+	}
+
+	// port_read();
+	// mode_read();
+  digitalRead16();
+  digitalRead16();
+
+	return true;
+}
+
 bool TCA6416A::isConnected()
 {
   _wire->beginTransmission(_address);
